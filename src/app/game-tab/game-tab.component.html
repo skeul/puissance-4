@@ -1,1 +1,12 @@
-<p>game-tab works!</p>
+<div class="gameTab">
+    <div class="gameTab--boxes" *ngFor="let box of boxes " [class.isDisabled]="box.isEmpty == false">
+        <div class="gameTab--boxes_box" (click)="play(box)">
+            <div class="gameTab--boxes_box_circle">
+                <div class="gameTab--boxes_box_circle_item"></div>
+            </div>
+        </div>
+        <div *ngIf="box.idPlayer !== 0" class="gameTab--boxes_box_item" [@inOutAnimation]
+            [ngStyle]="{'background-color': (box.idPlayer !== 0) ? players[box.idPlayer - 1].color : '#FFFFFF'}">
+        </div>
+    </div>
+</div>

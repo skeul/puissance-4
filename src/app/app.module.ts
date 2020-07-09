@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatCardModule, MatCard } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { AppComponent } from './app.component';
 import { GameTabComponent } from './game-tab/game-tab.component';
@@ -15,6 +16,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 import { PlayerState } from './states/player.state';
+import { BoxState } from './states/box.state';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,10 @@ import { PlayerState } from './states/player.state';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
+    MatDialogModule,
     NgxsModule.forRoot([
-      PlayerState
+      PlayerState,
+      BoxState
     ]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot()

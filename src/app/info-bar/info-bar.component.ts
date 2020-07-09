@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, Select } from "@ngxs/store";
 import { Player } from "../models/player.model";
 import { PlayerState } from "../states/player.state";
-import { NewPlayer } from "../actions/player.actions";
+import { GameService } from "../services/game.service";
 import { Observable } from "rxjs";
 
 @Component({
@@ -20,7 +20,7 @@ export class InfoBarComponent implements OnInit {
   @Select(PlayerState.getplayers) playerState$: Observable<any>
   @Select(PlayerState.getcurrent) playerCurrent$: Observable<any>
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private gameService: GameService) {
     this.playerState$.subscribe(
       (data) => this.players = data
     );
@@ -30,8 +30,8 @@ export class InfoBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Ajout des joueurs à l'initialisation
-    this.store.dispatch([new NewPlayer({ id: 1, color: "#FF0000", name: "Joueur 1", pions: 21 }), new NewPlayer({ id: 2, color: "#FFFF00", name: "Joueur 2", pions: 21 })])
+    // Initialisation des joueurs 
+    this.gameService.createPlayer();
   }
 
 

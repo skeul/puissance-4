@@ -1,1 +1,7 @@
-<p>dialog works!</p>
+<div class="dialog-container">
+    <h1 matDialogTitle>{{ dialogTitle }}</h1>
+    <div mat-dialog-content>{{ dialogMessage }}</div>
+    <div mat-dialog-actions>
+        <button mat-flat-button color="secondary" (click)="dialogRef.close(true)">Nouvelle partie</button>
+    </div>
+</div>
