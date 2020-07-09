@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
 
 import { AppComponent } from './app.component';
 import { GameTabComponent } from './game-tab/game-tab.component';
@@ -17,13 +19,15 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 import { PlayerState } from './states/player.state';
 import { BoxState } from './states/box.state';
+import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameTabComponent,
     InfoBarComponent,
-    DialogComponent
+    DialogComponent,
+    ThemeSwitcherComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,8 @@ import { BoxState } from './states/box.state';
     MatToolbarModule,
     MatCardModule,
     MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
     NgxsModule.forRoot([
       PlayerState,
       BoxState

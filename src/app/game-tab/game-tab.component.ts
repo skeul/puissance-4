@@ -119,7 +119,7 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 2].idPlayer && this.boxes[index - 1].row === this.boxes[index - 2].row)
                     && (this.boxes[index].idPlayer === this.boxes[index - 3].idPlayer && this.boxes[index - 2].row === this.boxes[index - 3].row)) {
 
-                    setTimeout(() => this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' à gagné!!!'), 800)
+                    setTimeout(() => this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!'), 800)
                     break;
                 }
             }
@@ -131,7 +131,7 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 14].idPlayer)
                     && (this.boxes[index].idPlayer === this.boxes[index - 21].idPlayer)) {
 
-                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' à gagné!!!')
+                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!')
                     break;
                 }
             }
@@ -143,7 +143,7 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 12].idPlayer && this.boxes[index - 6].row !== this.boxes[index - 12].row)
                     && (this.boxes[index].idPlayer === this.boxes[index - 18].idPlayer && this.boxes[index - 12].row !== this.boxes[index - 18].row)) {
 
-                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' à gagné!!!')
+                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!')
                     break;
                 }
             }
@@ -154,7 +154,7 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 16].idPlayer && (Number(this.boxes[index - 8].row) - 1) === Number(this.boxes[index - 16].row))
                     && (this.boxes[index].idPlayer === this.boxes[index - 24].idPlayer && (Number(this.boxes[index - 16].row) - 1) === Number(this.boxes[index - 24].row))) {
 
-                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' à gagné!!!')
+                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!')
                     break;
                 }
             }
