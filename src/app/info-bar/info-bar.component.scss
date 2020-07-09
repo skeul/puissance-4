@@ -1,0 +1,13 @@
+.info--bar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .info--bar--card{
+        flex: 1 1 auto;
+        margin: 1em;
+        &--current{
+            transform: translateY(-3px);
+            box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+        }
+    }
+}
