@@ -37,9 +37,11 @@ export class PlayerState {
     }
 
     @Action(EditPlayer)
-    edit({ getState, setState }: StateContext<PlayerStateModel>, { player }: EditPlayer) {
+    edit({ getState, setState }: StateContext<PlayerStateModel>, { player, count }: EditPlayer) {
         const state = getState();
         const playerList = [...state.players]
+        const playerIndex = playerList.findIndex(p => p.id === player.id);
+        playerList[playerIndex].pions = count
         setState({
             ...state,
             players: playerList

@@ -13,7 +13,7 @@ export class NewPlayer {
  */
 export class EditPlayer {
     static readonly type = '[Player] Edit'
-    constructor(public player: Player) { }
+    constructor(public player: Player, public count: number) { }
 }
 
 /**
