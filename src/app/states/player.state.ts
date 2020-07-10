@@ -8,6 +8,7 @@ export class PlayerStateModel {
     currentPlayer: Player;
 }
 
+// Declaration nom et default
 @State<PlayerStateModel>({
     name: 'players',
     defaults: {
@@ -18,16 +19,19 @@ export class PlayerStateModel {
 @Injectable()
 export class PlayerState {
 
+    // Retourne les joueurs
     @Selector()
     static getplayers(state: PlayerStateModel) {
         return state.players
     }
 
+    // Retourne le joueur qui joue
     @Selector()
     static getcurrent(state: PlayerStateModel) {
         return state.currentPlayer
     }
 
+    // Création d'un joueur
     @Action(NewPlayer)
     add({ getState, patchState }: StateContext<PlayerStateModel>, { player }: NewPlayer) {
         const state = getState();
@@ -36,6 +40,7 @@ export class PlayerState {
         })
     }
 
+    // Modification d'un joueur
     @Action(EditPlayer)
     edit({ getState, setState }: StateContext<PlayerStateModel>, { player, count }: EditPlayer) {
         const state = getState();
@@ -48,6 +53,7 @@ export class PlayerState {
         })
     }
 
+    // Set du joueur qui joue
     @Action(SetCurrentPlayer)
     setSelectedTodoId({ getState, setState }: StateContext<PlayerStateModel>, { player }: SetCurrentPlayer) {
         const state = getState();

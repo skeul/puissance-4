@@ -14,10 +14,16 @@ export class GameService {
 
     constructor(private store: Store) { }
 
+    /**
+    * @description Création des joueurs
+    */
     createPlayer() {
         this.store.dispatch([new NewPlayer({ id: 1, color: "#FF0000", name: "Joueur 1", pions: 21 }), new NewPlayer({ id: 2, color: "#FFFF00", name: "Joueur 2", pions: 21 })])
     }
 
+    /**
+    * @description Init des joueurs pour nouvelle partie
+    */
     initPlayer(player, count = 21) {
         this.store.dispatch(new EditPlayer(player, count))
     }
@@ -38,5 +44,4 @@ export class GameService {
             };
         }
     }
-
 }

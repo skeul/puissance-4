@@ -24,7 +24,7 @@ import { GameService } from "../services/game.service";
                     ':enter',
                     [
                         style({ transform: 'translateY(-600%)' }),
-                        animate('.8s ease-in',
+                        animate('.5s ease-in',
                             style({ transform: 'translateY(0)' }))
                     ]
                 ),
@@ -35,13 +35,13 @@ import { GameService } from "../services/game.service";
 })
 export class GameTabComponent implements OnInit {
 
-    columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-    rows = [1, 2, 3, 4, 5, 6];
+    // Declarations des variables
     boxes: Box[] = []
     players: Player[] = []
     currentPlayer: Player
     dialog: MatDialogRef<DialogComponent>;
 
+    // Initialisation des selecteurs
     @Select(BoxState) state$: Observable<any>
     @Select(PlayerState.getplayers) playerState$: Observable<any>
     @Select(PlayerState.getcurrent) playerCurrent$: Observable<any>
@@ -59,6 +59,7 @@ export class GameTabComponent implements OnInit {
     }
 
     ngOnInit() {
+        // Init plateau de jeu et set currentPlayer
         this.gameService.initGameTab()
         this.store.dispatch(new SetCurrentPlayer(this.players[0]))
     }
@@ -94,9 +95,11 @@ export class GameTabComponent implements OnInit {
         this.dialog = this.matDialog.open(DialogComponent, {
             disableClose: true
         });
+        // Set des données à afficher
         this.dialog.componentInstance.dialogTitle = title
         this.dialog.componentInstance.dialogMessage = message
 
+        //Après click surnouvelle partie
         this.dialog.afterClosed().subscribe(result => {
             this.store.dispatch(new RemoveBox())
             this.gameService.initGameTab()
@@ -119,7 +122,7 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 2].idPlayer && this.boxes[index - 1].row === this.boxes[index - 2].row)
                     && (this.boxes[index].idPlayer === this.boxes[index - 3].idPlayer && this.boxes[index - 2].row === this.boxes[index - 3].row)) {
 
-                    setTimeout(() => this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!'), 800)
+                    setTimeout(() => this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!'), 500)
                     break;
                 }
             }
@@ -131,7 +134,7 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 14].idPlayer)
                     && (this.boxes[index].idPlayer === this.boxes[index - 21].idPlayer)) {
 
-                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!')
+                    setTimeout(() => this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!'), 500)
                     break;
                 }
             }
@@ -143,7 +146,7 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 12].idPlayer && this.boxes[index - 6].row !== this.boxes[index - 12].row)
                     && (this.boxes[index].idPlayer === this.boxes[index - 18].idPlayer && this.boxes[index - 12].row !== this.boxes[index - 18].row)) {
 
-                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!')
+                    setTimeout(() => this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!'), 500)
                     break;
                 }
             }
@@ -154,14 +157,14 @@ export class GameTabComponent implements OnInit {
                     && (this.boxes[index].idPlayer === this.boxes[index - 16].idPlayer && (Number(this.boxes[index - 8].row) - 1) === Number(this.boxes[index - 16].row))
                     && (this.boxes[index].idPlayer === this.boxes[index - 24].idPlayer && (Number(this.boxes[index - 16].row) - 1) === Number(this.boxes[index - 24].row))) {
 
-                    this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!')
+                    setTimeout(() => this.openDialog('Victoire', 'Le joueur ' + this.boxes[index].idPlayer + ' a gagné!!!'), 500)
                     break;
                 }
             }
 
             // Vérification en cas d'égalité
             if (this.players[0].pions === 0 && this.players[1].pions === 0) {
-                this.openDialog('Egalité !!!', 'Vous n\'avez plus de pions et personne n\'a gagné!!!')
+                setTimeout(() => this.openDialog('Egalité !!!', 'Vous n\'avez plus de pions et personne n\'a gagné!!!'), 500)
                 break;
             }
         }

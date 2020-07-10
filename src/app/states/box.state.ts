@@ -7,6 +7,7 @@ export class BoxStateModel {
     boxes: Box[];
 }
 
+// Declaration nom et default
 @State<BoxStateModel>({
     name: 'boxes',
     defaults: {
@@ -16,16 +17,19 @@ export class BoxStateModel {
 @Injectable()
 export class BoxState {
 
+    // Retourne les cases de jeu
     @Selector()
     static getBoxes(state: BoxStateModel) {
         return state.boxes
     }
 
+    // Retourne les cases vides
     @Selector()
     static getEmptyBoxes(state: BoxStateModel) {
         return state.boxes.filter(item => item.isEmpty === true)
     }
 
+    // Création des cases
     @Action(NewBox)
     add({ getState, patchState }: StateContext<BoxStateModel>, { payload }: NewBox) {
         const state = getState();
@@ -34,6 +38,7 @@ export class BoxState {
         })
     }
 
+    // Modifications des cases lors du jeu
     @Action(EditBox)
     edit({ getState, setState }: StateContext<BoxStateModel>, { col, idPlayer }: EditBox) {
         const state = getState();
@@ -50,6 +55,7 @@ export class BoxState {
         }
     }
 
+    // Suppression des cases
     @Action(RemoveBox)
     remove({ getState, setState }: StateContext<BoxStateModel>, { }: RemoveBox) {
         const state = getState();

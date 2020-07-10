@@ -8,6 +8,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 })
 export class DialogComponent {
 
+  // Init des variables de message
   public dialogTitle: string;
   public dialogMessage: string;
 
