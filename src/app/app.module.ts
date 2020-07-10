@@ -20,6 +20,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { PlayerState } from './states/player.state';
 import { BoxState } from './states/box.state';
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,9 +41,9 @@ import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.componen
     NgxsModule.forRoot([
       PlayerState,
       BoxState
-    ]),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot()
+    ], { developmentMode: !environment.production }),
+    NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
+    NgxsLoggerPluginModule.forRoot({ disabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
