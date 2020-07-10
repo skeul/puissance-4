@@ -1,11 +1,18 @@
+:host{
+    width: 100%;
+}
 .info--bar{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
+    @media (max-width: 559px) {
+        flex-direction: column;
+    }
     .info--bar--card{
         flex: 1 1 auto;
         margin: 0 1em;
-        @media (max-width: 599px) {
+        @media (max-width: 559px) {
             margin: .5em 0;
         }
         &--current{
