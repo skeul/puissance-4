@@ -1,39 +1,68 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$puissance-quatre-angular-primary: mat-palette($mat-indigo);
-$puissance-quatre-angular-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$puissance-quatre-angular-warn: mat-palette($mat-red);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$puissance-quatre-angular-theme: mat-light-theme((
-  color: (
-    primary: $puissance-quatre-angular-primary,
-    accent: $puissance-quatre-angular-accent,
-    warn: $puissance-quatre-angular-warn,
-  )
-));
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($puissance-quatre-angular-theme);
-
-/* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '~@angular/material/theming';
+@include mat-core();
+
+
+@mixin custom-box-color($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+
+  .custom-box-color {
+    // Use mat-color to extract individual colors from a palette.
+    -webkit-box-shadow: 0 0 0 150px mat-color($primary) !important;
+    -moz-box-shadow: 0 0 0 150px mat-color($primary) !important;
+    box-shadow: 0 0 0 150px mat-color($primary) !important;
+
+  }
+}
+
+
+@mixin custom-box-theme($theme) {
+  // Extracts the color and typography configurations from the theme.
+  $color: mat-get-color-config($theme);
+
+  // Do not generate styles if configurations for individual theming
+  // systems have been explicitly set to `null`.
+  @if $color != null {
+    @include custom-box-color($color); 
+  }
+}
+
+// Light theme
+$light-app-primary: mat-palette($mat-indigo);
+$light-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$light-app-theme:   mat-light-theme((
+  color: (
+    primary: $light-app-primary, 
+    accent: $light-app-accent
+)
+));
+
+// Include light theme 
+@include angular-material-theme($light-app-theme);
+
+
+// Dark theme
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme((
+  color: (
+    primary: $dark-primary, 
+    accent: $dark-accent,
+    warn: $dark-warn
+)
+));
+
+@include custom-box-theme($light-app-theme);
+// Classes pour le switch de theme
+.dark-theme{
+  @include angular-material-theme($dark-theme);
+  @include custom-box-theme($dark-theme);
+}
+.light-theme{
+  @include angular-material-theme($light-app-theme);
+  @include custom-box-theme($light-app-theme);
+}

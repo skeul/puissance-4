@@ -2,7 +2,7 @@
     <div class="gameTab--boxes" *ngFor="let box of boxes " [class.isDisabled]="box.isEmpty == false">
         <div class="gameTab--boxes_box" (click)="play(box)">
             <div class="gameTab--boxes_box_circle">
-                <div class="gameTab--boxes_box_circle_item"></div>
+                <div class="gameTab--boxes_box_circle_item custom-box-color"></div>
             </div>
         </div>
         <div *ngIf="box.idPlayer !== 0" class="gameTab--boxes_box_item" [@inOutAnimation]
